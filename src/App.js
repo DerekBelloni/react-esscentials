@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from "react";
 import './App.css';
 
-function App() {
+// https://api.github.com/users/derekbelloni
+
+function App({ login }) {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://api.github.com/users/${login}`)
+      .then(response => response.json())
+      .then(setData);
+  }, [])
+
+  if (data) {
+    console.log(data)
+    return (<div>
+      <h1>{data.name}</h1>
+      <p>{data.location}</p>
+    </div>)
+  }
+
+  return <div>No User Available</div>
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
     </div>
-  );
+
+  )
 }
+
+
+
+
+
+
 
 export default App;
