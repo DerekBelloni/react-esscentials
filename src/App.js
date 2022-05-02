@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import './App.css';
+import { Routes, Route } from "react-router-dom";
+import {
+  Home,
+  About,
+  Events,
+  Contact
+} from "./pages";
 
 // https://api.github.com/users/derekbelloni
 
-function App({ login }) {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch(`https://api.github.com/users/${login}`)
-      .then(response => response.json())
-      .then(setData);
-  }, [])
-
-  if (data) {
-    console.log(data)
-    return (<div>
-      <h1>{data.name}</h1>
-      <p>{data.location}</p>
-    </div>)
-  }
-
-  return <div>No User Available</div>
-
+function App() {
   return (
     <div>
-
+      <Routes>
+        <Routes path="/" element={<Home />} />
+        <Routes />
+        <Routes />
+        <Routes />
+      </Routes>
     </div>
-
   )
 }
+
+
+
+
+
+
+
 
 
 
